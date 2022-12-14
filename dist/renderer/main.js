@@ -1,5 +1,5 @@
 "use strict";
-var _a, _b, _c, _d;
+var _a, _b, _c, _d, _e;
 (_a = document.getElementById('sleep')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', () => {
     var _a;
     // @ts-expect-error
@@ -15,7 +15,12 @@ var _a, _b, _c, _d;
     // @ts-expect-error
     (_a = window.api) === null || _a === void 0 ? void 0 : _a.youtube();
 });
-(_d = document.getElementById('exit')) === null || _d === void 0 ? void 0 : _d.addEventListener('click', () => {
+(_d = document.getElementById('roblox')) === null || _d === void 0 ? void 0 : _d.addEventListener('click', () => {
+    var _a;
+    // @ts-expect-error
+    (_a = window.api) === null || _a === void 0 ? void 0 : _a.roblox();
+});
+(_e = document.getElementById('exit')) === null || _e === void 0 ? void 0 : _e.addEventListener('click', () => {
     var _a;
     // @ts-expect-error
     (_a = window.api) === null || _a === void 0 ? void 0 : _a.exit();

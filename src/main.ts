@@ -60,6 +60,9 @@ const createWindow = (): void => {
     ipcMain.handle('youtube', () => {
         exec("start https://www.youtube.com");
     })
+    ipcMain.handle('roblox', () => {
+        exec("start https://www.roblox.com");
+    })
     ipcMain.handle('exit', () => {
         app.quit();
     })

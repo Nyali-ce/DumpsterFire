@@ -2,6 +2,8 @@
 const { exec } = require('child_process');
 const path = require('path');
 const { app, BrowserWindow, Menu, ipcMain, Tray } = require('electron');
+if (require('electron-squirrel-startup'))
+    app.quit();
 let progressInterval;
 const createWindow = () => {
     const winMenu = new Menu.buildFromTemplate([
@@ -51,6 +53,9 @@ const createWindow = () => {
     });
     ipcMain.handle('youtube', () => {
         exec("start https://www.youtube.com");
+    });
+    ipcMain.handle('roblox', () => {
+        exec("start https://www.roblox.com");
     });
     ipcMain.handle('exit', () => {
         app.quit();
