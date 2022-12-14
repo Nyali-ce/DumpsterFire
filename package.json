@@ -1,16 +1,29 @@
 {
   "name": "dumpster-fire",
   "version": "1.0.0",
-  "description": "",
-  "main": "main.js",
+  "description": "just a dumpster fire",
+  "main": "./dist/main.js",
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "icon": "./src/assets/icons/icon.ico"
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel"
+        }
+      ]
+    }
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron-forge start",
+    "start": "npm run build && electron-forge start",
     "package": "electron-forge package",
-    "make": "electron-forge make"
+    "make": "electron-forge make",
+    "build": "tsc"
   },
   "keywords": [],
-  "author": "",
+  "author": "Nyali.ce",
   "license": "ISC",
   "devDependencies": {
     "@electron-forge/cli": "^6.0.4",
@@ -21,6 +34,7 @@
     "electron": "^22.0.0"
   },
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-squirrel-startup": "^1.0.0",
+    "typescript": "^4.9.4"
   }
 }
