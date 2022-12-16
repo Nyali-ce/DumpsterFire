@@ -18,4 +18,3 @@ document.getElementById('exit')?.addEventListener('click', () => {
     // @ts-expect-error
     window.api?.exit();
 })
-

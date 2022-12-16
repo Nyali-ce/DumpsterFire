@@ -6,6 +6,17 @@ if (require('electron-squirrel-startup'))
     app.quit();
 let progressInterval;
 const createWindow = () => {
+    const tray = new Tray(path.join(__dirname, '../assets/icons/icon.ico'));
+    const contextMenu = Menu.buildFromTemplate([
+        {
+            label: 'Exit',
+            click: () => {
+                app.quit();
+            }
+        }
+    ]);
+    tray.setToolTip('Electron App');
+    tray.setContextMenu(contextMenu);
     const winMenu = new Menu.buildFromTemplate([
         {
             label: 'View',

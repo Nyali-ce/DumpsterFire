@@ -365,3 +365,16 @@ button.main:after {
     top: 0;
     border-radius: 10px;
 }
+
+button.main:hover:before {
+    background: #fff;
+}
+
+button.main:hover:after {
+    background: #333;
+}
+
+button.main:active {
+    transition: top 0.1s ease-in-out;
+    top: 2px;
+}
