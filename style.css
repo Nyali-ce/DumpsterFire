@@ -1,16 +1,107 @@
-button {
+button, input {
     -webkit-app-region: no-drag;
 }
 
 html,
 body {
     margin: 0;
+    width: 100%;
     height: 100%;
 }
+
+div#windowBar {
+    -webkit-app-region: drag;
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    height: 75px;
+    width: 955px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    transition: 0.5s;
+    z-index: 999;
+    background: linear-gradient(45deg,
+            #ff0000,
+            #ff7300,
+            #fffb00,
+            #48ff00,
+            #00ffd5,
+            #002bff,
+            #7a00ff,
+            #ff00c8,
+            #ff0000);
+    background-size: 400%;
+    z-index: -1;
+    animation: glowing-button-85 20s linear infinite;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 10px;
+}
+
+button.menubtn {
+    position: relative;
+    height: 75px;
+    width: 100px;
+    border: none;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.0);
+    pointer-events: auto;
+    border-left: #000000 1px solid;
+    text-align: center;
+    justify-content: center;
+    font-size: 50px;
+}
+
+input.menuRange {
+    position: relative;
+    height: 15px;
+    width: 75px;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.0);
+    pointer-events: auto;
+    appearance: none;
+    -webkit-appearance: none;
+    animation: blink 1s linear infinite;
+    padding: 0;
+    margin: 0;
+    background:#ddd;
+    outline:none;
+    border: none;
+    border-top: #000000 1px solid;
+    transform: rotate(-90deg);
+    transform-origin: right bottom;
+    margin-top: -90px;
+    margin-left: -61px;
+}
+
+input.menuRange::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 15px;
+    width: 15px;
+    border-radius: 0%;
+    background: white;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+@keyframes blink {
+    0% {
+      background-color: white;
+    }
+    50% {
+        background-color: black;
+    }
+    100% {
+        background-color: white;
+    }
+}
+  
 
 div#mainContent {
     position: relative;
     height: 100%;
+    width: 100%;
     z-index: 1;
 }
 
@@ -21,15 +112,38 @@ div#mainContent {
 }
 
 body {
-    -webkit-app-region: drag;
     min-height: 100vh;
     font-family: 'Cyber', sans-serif;
     overflow: hidden;
 }
 
+div#glowCursor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: none;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+    filter: blur(10px);
+    pointer-events: none;
+}
+
+iframe#spotify {
+    position: absolute;
+    right: 100px;
+    width: 300px;
+    height: 80px;
+    margin-bottom: 155px;
+    z-index: 1;
+    overflow: hidden;
+    border: 0;
+}
+
 .hexagon-wrapper {
-    -webkit-app-region: no-drag;
-    margin: auto;
     text-align: initial;
     width: 200px;
     height: 200px;
@@ -94,6 +208,262 @@ body {
     transition: 0.5s;
 }
 
+button.main {
+    margin: 0.4em;
+    text-transform: uppercase;
+    font-size: large;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 0.6em 2em;
+    overflow: visible;
+    border: none;
+    outline: none;
+    color: rgb(255, 255, 255);
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+button.main:before {
+    content: "";
+    background: linear-gradient(45deg,
+            #ff0000,
+            #ff7300,
+            #fffb00,
+            #48ff00,
+            #00ffd5,
+            #002bff,
+            #7a00ff,
+            #ff00c8,
+            #ff0000);
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing-button-85 20s linear infinite;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 10px;
+}
+
+@keyframes glowing-button-85 {
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 400% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+button.main:after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #222;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+button.main:hover:before {
+    background: #fff;
+}
+
+button.main:hover:after {
+    background: #333;
+}
+
+button.main:active {
+    transition: top 0.1s ease-in-out;
+    top: 2px;
+}
+
+.player{
+    background-color: #840931;
+    height: 200px;
+    width: 140px;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    bottom: 180px;
+    border: 10px solid #000000;
+    border-bottom: none;
+    border-radius: 60px 80px 0 0;
+    z-index: 1;
+}
+.player:after{
+    content: "";
+    position: absolute;
+    width: 92%;
+    height: 85%;
+    background-color: #ea1616;
+    top: 2.5px;
+    left: 6px;
+    border-radius: 58% 70% 28% 42% / 28% 56% 88% 89%;
+}
+.legs{
+    height: 50px;
+    width: 60px;
+    background-color: #840931;
+    position: absolute;
+    bottom: -50px;
+    left: -10px;
+    border: 10px solid #000000;
+    border-top: none;
+    border-radius: 0 0 22px 22px;
+    z-index: 1;
+}
+.legs:before{
+    content: "";
+    height: 45px;
+    width: 60px;
+    background-color: #840931;
+    position: absolute;
+    right: -90px;
+    border: 10px solid #000000;
+    border-top: none;
+    border-radius: 0 0 22px 22px;
+}
+.legs:after{
+    content: "";
+    height: 10px;
+    width: 55px;
+    background-color: #000000;
+    position: absolute;
+    top: -10px;
+    left: 40px;
+    border-radius: 0 0 10px 0;
+}
+.back{
+    height: 120px;
+    width: 35px;
+    background-color: #ea1616;
+    border: 10px solid black;
+    position: absolute;
+    left: -45px;
+    top: 65px;
+    border-right: none;
+    border-radius: 20px 0 0 20px;
+}
+.back:before{
+    content: "";
+    position: absolute;
+    height: 78px;
+    width: 26px;
+    background-color: #840931;
+    bottom: -0.5px;
+    left: -1px;
+    border-radius: 12px 0 0 8px;
+}
+.glass{
+    height: 75px;
+    width: 110px;
+    background-color: #225381;
+    z-index: 2;
+    position: absolute;
+    top: 30px;
+    left: 40px;
+    border-radius: 25px 50px 30px 30px;
+    border: 10px solid black;
+}
+.glass:before{
+    content: "";
+    position: absolute;
+    width: 85%;
+    height: 65%;
+    background-color: #71d4ec;
+    border-radius: 0 28px 3px 30px;
+    right: 0;
+    top: 0;
+}
+.glass:after{
+    content: "";
+    position: absolute;
+    width: 45%;
+    height: 22%;
+    background-color: #f7f7f7;
+    left: 39px;
+    top: 5px;
+    border-radius: 10px;
+    transform: rotate(6deg);
+}
+.shadow{
+    height: 40px;
+    width: 210px;
+    background-color: rgba(49, 49, 49, 0.356);
+    position: absolute;
+    bottom: -60px;
+    right: -40px;
+    border-radius: 50%;
+    z-index: 0;
+}
+
+*,*:after,*:before{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+
+.snow, .snow:before, .snow:after {
+  position: absolute;
+  top: -650px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-image: 
+  radial-gradient(4px 4px at 100px 50px, #fff , transparent), 
+  radial-gradient(6px 6px at 200px 150px, #fff, transparent), 
+  radial-gradient(3px 3px at 300px 250px, #fff 50%, transparent), 
+  radial-gradient(4px 4px at 400px 350px, #fff 50%, transparent), 
+  radial-gradient(6px 6px at 500px 100px, #fff 50%, transparent), 
+  radial-gradient(3px 3px at 50px 200px, #fff 50%, transparent), 
+  radial-gradient(4px 4px at 150px 300px, #fff 50%, transparent), 
+  radial-gradient(6px 6px at 250px 400px, #fff 50%, transparent), 
+  radial-gradient(3px 3px at 350px 500px, #fff 50%, transparent);
+  background-size: 650px 650px;
+  animation: snow 3s linear infinite;
+  content: "";
+}
+
+.snow:after {
+  margin-left: -250px;
+  opacity: 0.5;
+  filter: blur(2px);
+  animation-duration: 6s;
+  animation-direction: reverse;
+}
+
+.snow:before {
+	margin-left: -350px;
+  opacity: 0.7;
+  filter: blur(1px);
+  animation-duration: 9s;
+  animation-direction: reverse;
+}
+
+@keyframes snow {
+  to {
+    transform: translateY(650px);
+  }
+}
 
 body .cybr-btn+.cybr-btn {
     margin-top: 2rem;
@@ -292,89 +662,4 @@ body .cybr-btn+.cybr-btn {
 
 .cybr-btn:nth-of-type(2) {
     --primary-hue: 260;
-}
-
-button.main {
-    margin: 0.4em;
-    text-transform: uppercase;
-    font-size: large;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    padding: 0.6em 2em;
-    overflow: visible;
-    border: none;
-    outline: none;
-    color: rgb(255, 255, 255);
-    background: #111;
-    cursor: pointer;
-    position: relative;
-    z-index: 0;
-    border-radius: 10px;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-}
-
-button.main:before {
-    content: "";
-    background: linear-gradient(45deg,
-            #ff0000,
-            #ff7300,
-            #fffb00,
-            #48ff00,
-            #00ffd5,
-            #002bff,
-            #7a00ff,
-            #ff00c8,
-            #ff0000);
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    background-size: 400%;
-    z-index: -1;
-    filter: blur(5px);
-    -webkit-filter: blur(5px);
-    width: calc(100% + 4px);
-    height: calc(100% + 4px);
-    animation: glowing-button-85 20s linear infinite;
-    transition: opacity 0.3s ease-in-out;
-    border-radius: 10px;
-}
-
-@keyframes glowing-button-85 {
-    0% {
-        background-position: 0 0;
-    }
-
-    50% {
-        background-position: 400% 0;
-    }
-
-    100% {
-        background-position: 0 0;
-    }
-}
-
-button.main:after {
-    z-index: -1;
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #222;
-    left: 0;
-    top: 0;
-    border-radius: 10px;
-}
-
-button.main:hover:before {
-    background: #fff;
-}
-
-button.main:hover:after {
-    background: #333;
-}
-
-button.main:active {
-    transition: top 0.1s ease-in-out;
-    top: 2px;
 }

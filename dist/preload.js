@@ -5,5 +5,11 @@ contextBridge.exposeInMainWorld('api', {
     league: () => ipcRenderer.invoke('league'),
     youtube: () => ipcRenderer.invoke('youtube'),
     roblox: () => ipcRenderer.invoke('roblox'),
+    minecraft: () => ipcRenderer.invoke('minecraft'),
+    last: () => ipcRenderer.invoke('last'),
+    play: () => ipcRenderer.invoke('play'),
+    next: () => ipcRenderer.invoke('next'),
+    volume: (volume) => ipcRenderer.invoke('volume', volume),
+    minimize: () => ipcRenderer.invoke('minimize'),
     exit: () => ipcRenderer.invoke('exit'),
 });

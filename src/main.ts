@@ -1,6 +1,7 @@
 const { exec } = require('child_process');
 const path = require('path')
 const { app, BrowserWindow, Menu, ipcMain, Tray } = require('electron')
+const { handler } = require('./handler.js')
 
 if (require('electron-squirrel-startup')) app.quit();
 
@@ -63,21 +64,7 @@ const createWindow = (): void => {
 
     win.setMenu(winMenu)
 
-    ipcMain.handle('sleep', () => {
-        exec("powershell (Add-Type '[DllImport(\\\"user32.dll\\\")]^public static extern int SendMessage(int hWnd, int hMsg, int wParam, int lParam);' -Name a -Pas)::SendMessage(-1, 0x0112, 0xF170, 2)");
-    })
-    ipcMain.handle('league', () => {
-        exec("\"A:/Games/Riot Games/Riot Client/RiotClientServices.exe\" --launch-product=league_of_legends --launch-patchline=live");
-    })
-    ipcMain.handle('youtube', () => {
-        exec("start https://www.youtube.com");
-    })
-    ipcMain.handle('roblox', () => {
-        exec("start https://www.roblox.com");
-    })
-    ipcMain.handle('exit', () => {
-        app.quit();
-    })
+    handler(ipcMain, win, app, exec)
 
     win.flashFrame(true)
     win.on('focus', () => {
