@@ -57,3 +57,15 @@ document.addEventListener('mousemove', (e) => {
         glowCursor.style.top = e.clientY + 'px';
     }
 })
+
+const counter = document.getElementById('counter');
+const initialTime = 1122696000;
+const averageLifespan = 82.96 * 365 * 24 * 60 * 60;
+
+if (counter) {
+    setInterval(() => {
+        const time = Math.floor((Date.now() / 1000) - initialTime);
+        const timeLeft = averageLifespan - time;
+        counter.innerHTML = `Time remaining: ${timeLeft.toString()}`
+    }, 1000);
+}

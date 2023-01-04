@@ -17,7 +17,7 @@ const createWindow = (): void => {
             }
         }
     ])
-    tray.setToolTip('Electron App');
+    tray.setToolTip('Sleepy');
     tray.setContextMenu(contextMenu);
 
     const winMenu = new Menu.buildFromTemplate([
